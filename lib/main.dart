@@ -1,11 +1,17 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:hoshi_launcher/widgets/main_text_entry.dart';
 import 'package:hoshi_launcher/widgets/results_list.dart';
+import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 import 'package:wayland_shell/wayland_shell.dart';
+
+late final StreamingSharedPreferences prefs;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  prefs = await StreamingSharedPreferences.instance;
 
   await WaylandShell.init(
     namespace: "hoshi-launcher",
@@ -17,7 +23,7 @@ void main() async {
   );
 
   await WaylandShell.setWidth(400);
-  await WaylandShell.setExclusiveZone(400);
+  await WaylandShell.setExclusiveZone(kDebugMode ? 400 : -1);
   await WaylandShell.setAnchor(WaylandShellEdge.top, true);
   await WaylandShell.setAnchor(WaylandShellEdge.left, true);
   await WaylandShell.setAnchor(WaylandShellEdge.bottom, true);

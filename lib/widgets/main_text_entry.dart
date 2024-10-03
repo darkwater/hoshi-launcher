@@ -9,6 +9,7 @@ class MainTextEntry extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return TextField(
+      autofocus: true,
       decoration: const InputDecoration(
         // border: InputBorder.none,
         // filled: true,

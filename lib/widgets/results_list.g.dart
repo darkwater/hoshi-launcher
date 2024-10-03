@@ -22,8 +22,24 @@ final desktopEntriesProvider =
 );
 
 typedef DesktopEntriesRef = AutoDisposeFutureProviderRef<List<DesktopEntry>>;
+String _$pinnedEntryPathsHash() => r'3d6ec846c32dd38c4b41722ff55c0b70f0d15bd7';
+
+/// See also [pinnedEntryPaths].
+@ProviderFor(pinnedEntryPaths)
+final pinnedEntryPathsProvider =
+    AutoDisposeStreamProvider<List<String>>.internal(
+  pinnedEntryPaths,
+  name: r'pinnedEntryPathsProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$pinnedEntryPathsHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef PinnedEntryPathsRef = AutoDisposeStreamProviderRef<List<String>>;
 String _$filteredDesktopEntriesHash() =>
-    r'6080d8fcf49789c9b2e66077cb4bf02a883d113f';
+    r'fdea71c3ffcc6d9afde2812a538bc9c8cf41b154';
 
 /// See also [filteredDesktopEntries].
 @ProviderFor(filteredDesktopEntries)
